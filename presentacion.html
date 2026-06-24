@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbloqueos Bolivia v2.7 — Presentación</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <style>
+        body { background: #0a0a1a; color: #ccc; font-family: 'Share Tech Mono', 'Segoe UI', monospace; }
+        h1, h2, h3 { font-weight: 700; letter-spacing: 1px; }
+        h2 { color: #00f0ff; border-bottom: 1px solid rgba(0,240,255,0.15); padding-bottom: 8px; margin-top: 40px; font-family: 'Orbitron', sans-serif; font-size: 1.1rem; letter-spacing: 4px; }
+        .hero { background: radial-gradient(ellipse at center, #0a0a1a 0%, #000 100%); padding: 60px 0; text-align: center; border-bottom: 2px solid rgba(255,0,64,0.2); }
+        .hero .tagline { color: #ffd700; letter-spacing: 5px; font-size: 0.85rem; font-family: 'Orbitron', sans-serif; }
+        .title-des { color: #fff; text-shadow: 0 0 20px rgba(0,240,255,0.3), 0 4px 15px rgba(0,0,0,0.8); font-family: 'Black Ops One', system-ui; font-size: clamp(2.5rem, 12vw, 5rem); line-height: 0.85; letter-spacing: 8px; text-transform: uppercase; }
+        .title-bloqueos { color: #ff0040; animation: glitch-color 3s infinite; text-shadow: 0 0 30px rgba(255,0,64,0.4), 0 4px 15px rgba(0,0,0,0.8); font-family: 'Black Ops One', system-ui; font-size: clamp(2.5rem, 12vw, 5rem); line-height: 0.85; letter-spacing: 8px; text-transform: uppercase; }
+        .title-sub { font-family: 'Orbitron', sans-serif; color: #fff; font-size: clamp(0.6rem, 4vw, 1.2rem); letter-spacing: 16px; text-transform: uppercase; opacity: 0.7; }
+        @keyframes glitch-color { 0% { text-shadow: 1px 0 #00f0ff, -1px 0 #ff00ff; } 2% { text-shadow: 5px 0 #00f0ff, -5px 0 #ff00ff; } 4% { text-shadow: 1px 0 #00f0ff, -1px 0 #ff00ff; } 100% { text-shadow: 1px 0 #00f0ff, -1px 0 #ff00ff; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .rebelion-tag { background: #ff0040; color: #fff; padding: 3px 14px; font-weight: 700; font-size: clamp(0.5rem, 2vw, 0.7rem); transform: skew(-15deg); display: inline-block; letter-spacing: 3px; box-shadow: 0 2px 10px rgba(255,0,64,0.3); font-family: 'Share Tech Mono', monospace; }
+        .card { background: rgba(0,10,20,0.85); border: 1px solid rgba(0,240,255,0.12); border-radius: 12px; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-3px); border-color: rgba(0,240,255,0.3); }
+        .card-title { color: #00f0ff; font-size: 0.95rem; font-family: 'Orbitron', sans-serif; letter-spacing: 2px; }
+        .badge-hero { background: #00f0ff; color: #000; }
+        .badge-villain { background: #ff0040; color: #fff; }
+        .footer { text-align: center; padding: 30px 0; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 50px; }
+        .stat-number { font-size: 2rem; font-weight: 900; color: #ffd700; font-family: 'Black Ops One', system-ui; }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: #666; font-family: 'Orbitron', sans-serif; }
+        .game-ui { font-family: 'Share Tech Mono', monospace; }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="container">
+        <div class="mb-2" style="animation:fadeIn 0.6s ease;">
+            <div style="display:flex;justify-content:center;align-items:baseline;gap:0;flex-wrap:wrap;">
+                <span class="title-des">DES</span><span style="color:#888;text-shadow:0 4px 15px rgba(0,0,0,0.8);font-family:'Black Ops One',system-ui;font-size:clamp(2.5rem,12vw,5rem);">-</span><span class="title-bloqueos">BLOQUEOS</span>
+            </div>
+            <div class="title-sub">BOLIVIA</div>
+        </div>
+        <span class="rebelion-tag mb-2">50 DÍAS DE RESISTENCIA</span>
+        <p class="text-secondary mt-3" style="letter-spacing:5px;font-size:0.65rem;font-family:'Orbitron',sans-serif;color:rgba(0,240,255,0.7) !important;">SOBREVIVE A LA RESISTENCIA</p>
+        <p style="letter-spacing:3px;font-size:0.55rem;color:#555;font-family:'Share Tech Mono',monospace;">RUN & GUN 2D — REVELIÓN 2026</p>
+        <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+            <span class="badge bg-dark px-3 py-2 border border-info" style="font-size:0.7rem;">🎭 12 Personajes</span>
+            <span class="badge bg-dark px-3 py-2 border border-danger" style="font-size:0.7rem;">🗺️ 6 Niveles</span>
+            <span class="badge bg-dark px-3 py-2 border border-warning" style="font-size:0.7rem;">🌦️ 8 Climas</span>
+            <span class="badge bg-dark px-3 py-2 border border-success" style="font-size:0.7rem;">🏁 3 Finales</span>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4">
+
+    <!-- QUÉ ES -->
+    <h2>🎯 ¿Qué es?</h2>
+    <p class="lead">Desbloqueos Bolivia es un juego tipo <strong>Run &amp; Gun 2D</strong> de desplazamiento lateral, ambientado en el conflicto social boliviano de 2026. Avanza por 6 ciudades, derrota enemigos, recolecta recursos, usa habilidades únicas y descubre tu destino según el personaje que elijas.</p>
+
+    <!-- ESTADÍSTICAS -->
+    <div class="row text-center my-5">
+        <div class="col-4"><div class="stat-number">2,868</div><div class="stat-label">Líneas de código</div></div>
+        <div class="col-4"><div class="stat-number">6</div><div class="stat-label">Ciudades</div></div>
+        <div class="col-4"><div class="stat-number">12</div><div class="stat-label">Personajes</div></div>
+    </div>
+
+    <!-- CONTROLES -->
+    <h2>🕹️ Controles</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered" style="font-size:0.85rem;">
+            <thead><tr><th>Acción</th><th>Tecla</th><th>Móvil</th></tr></thead>
+            <tbody>
+                <tr><td>Moverse</td><td>← →</td><td>Botones ◀ ▶</td></tr>
+                <tr><td>Saltar</td><td>Espacio</td><td>Botón ⬆</td></tr>
+                <tr><td>Disparar</td><td>X</td><td>Botón 🔥</td></tr>
+                <tr><td>Habilidad</td><td>Z</td><td>Botón ⚡ HAB</td></tr>
+                <tr><td>Saltar historia</td><td>X / Z</td><td>Botón CONTINUAR</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PERSONAJES -->
+    <h2>🎭 Personajes</h2>
+    <div class="row g-3">
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">P. Militar</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">🎯 Visor Táctico — Dron + marca enemigos, +1 daño</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">P. Boliviana</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">🚓 Macanazo Policial — Gas lacrimógeno + defensa +20</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Rebelde</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">🔥 Incendio Provocado — Muro de fuego</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">DEA</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">🇺🇸 Dron Reaper — Misiles teledirigidos</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Cap. LARI</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">🗣️ Grito de Euforia — Ondas de choque</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Joe (Hacker)</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">💻 Código Fuente — Hackea enemigos</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Presidente</div>
+                <span class="badge badge-hero mb-2">Héroe</span>
+                <p class="card-text" style="font-size:0.8rem;">📜 Decreto Supremo — 8 bombas guiadas</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Cholita</div>
+                <span class="badge badge-villain mb-2">Villana</span>
+                <p class="card-text" style="font-size:0.8rem;">🪔 Fogata de la Abuela — Espíritus de fuego</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Poncho Rojo</div>
+                <span class="badge badge-villain mb-2">Villano</span>
+                <p class="card-text" style="font-size:0.8rem;">✨ Tejido Sagrado — Invulnerable 4s + refleja daño</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">COB (Minero)</div>
+                <span class="badge badge-villain mb-2">Villano</span>
+                <p class="card-text" style="font-size:0.8rem;">💣 Dinamita de Socavón — Explosión en cadena</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Evo González</div>
+                <span class="badge badge-villain mb-2">Villano</span>
+                <p class="card-text" style="font-size:0.8rem;">🌿 Lluvia de Hojas de Coca — Droga enemigos</p>
+            </div>
+        </div>
+        <div class="col-md-3 col-6">
+            <div class="card p-3 h-100">
+                <div class="card-title">Perro Petardo</div>
+                <span class="badge badge-villain mb-2">Villano</span>
+                <p class="card-text" style="font-size:0.8rem;">☠️ Cadena Mortal — Carga imparable + explosiones</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- NIVELES -->
+    <h2 class="mt-4">🗺️ Niveles</h2>
+    <div class="row g-3">
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">1. La Paz</h5><p style="font-size:0.8rem;">Cerros, Illimani, árboles</p><span class="badge bg-secondary">Poncho, COB</span></div></div>
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">2. El Alto</h5><p style="font-size:0.8rem;">Altiplano, cactos, piedras</p><span class="badge bg-secondary">Poncho, COB</span></div></div>
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">3. Oruro</h5><p style="font-size:0.8rem;">Cerros mineros, socavón, Diablada</p><span class="badge bg-secondary">Poncho, COB</span></div></div>
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">4. Cochabamba</h5><p style="font-size:0.8rem;">Valle, cerro Tunari, frutales</p><span class="badge bg-secondary">Poncho, COB</span></div></div>
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">5. Chapare</h5><p style="font-size:0.8rem;">Selva, coca, palmeras, río</p><span class="badge bg-danger">Evo, Rodrigo_e</span></div></div>
+        <div class="col-md-4 col-6"><div class="card p-3"><h5 class="card-title">6. Santa Cruz</h5><p style="font-size:0.8rem;">Colinas, edificios, palmeras</p><span class="badge bg-danger">Evo, Rodrigo_e</span></div></div>
+    </div>
+
+    <!-- CLIMA -->
+    <h2>🌦️ Clima Dinámico</h2>
+    <p>8 condiciones climáticas que cambian automáticamente cada 45 segundos:</p>
+    <div class="d-flex flex-wrap gap-2">
+        <span class="badge bg-dark border px-3 py-2">☀️ Día</span>
+        <span class="badge bg-dark border px-3 py-2">🌙 Noche</span>
+        <span class="badge bg-dark border px-3 py-2">🌅 Atardecer</span>
+        <span class="badge bg-dark border px-3 py-2">🌄 Amanecer</span>
+        <span class="badge bg-dark border px-3 py-2">❄️ Nieve</span>
+        <span class="badge bg-dark border px-3 py-2">🌧️ Lluvia</span>
+        <span class="badge bg-dark border px-3 py-2">⛈️ Tormenta</span>
+        <span class="badge bg-dark border px-3 py-2">🌫️ Niebla</span>
+    </div>
+
+    <!-- TIENDA -->
+    <h2>💰 Economía</h2>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered" style="font-size:0.85rem;">
+            <thead><tr><th>Enemigo</th><th>Recompensa</th></tr></thead>
+            <tbody>
+                <tr><td>Poncho Rojo</td><td>$5</td></tr>
+                <tr><td>Miembro COB</td><td>$10</td></tr>
+                <tr><td>Evo / Rodrigo_e</td><td>$30</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-dark table-striped table-bordered" style="font-size:0.85rem;">
+            <thead><tr><th>Ítem</th><th>Efecto</th><th>Precio</th></tr></thead>
+            <tbody>
+                <tr><td>🔫 Munición</td><td>+20 balas</td><td>$50</td></tr>
+                <tr><td>💊 Botiquín</td><td>+25 HP</td><td>$30</td></tr>
+                <tr><td>🛡️ Chaleco</td><td>DEF+5</td><td>$100</td></tr>
+                <tr><td>⚡ Bala daño+</td><td>DAÑO+1</td><td>$150</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- FINALES -->
+    <h2>🏁 Finales</h2>
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="card p-3 h-100 border border-info">
+                <h5 class="card-title" style="color:#0ff;">Chapare</h5>
+                <p style="font-size:0.8rem;">Capturas a Evo con apoyo de la DEA. Héroes como PM, DEA, Cap. LARI.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 h-100 border border-success">
+                <h5 class="card-title" style="color:#0f0;">Bueno</h5>
+                <p style="font-size:0.8rem;">Bolivia se unifica, el diálogo vence a la violencia.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card p-3 h-100 border border-danger">
+                <h5 class="card-title" style="color:#f44;">Malo</h5>
+                <p style="font-size:0.8rem;">El pueblo toma el poder, la rebelión triunfa.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TECNOLOGÍAS -->
+    <h2>🛠️ Tecnologías</h2>
+    <div class="d-flex flex-wrap gap-2">
+        <span class="badge fs-6 px-4 py-2" style="background:#222;border:1px solid #e44d26;">HTML5 Canvas</span>
+        <span class="badge fs-6 px-4 py-2" style="background:#222;border:1px solid #f7df1e;color:#f7df1e;">JavaScript Vanilla</span>
+        <span class="badge fs-6 px-4 py-2" style="background:#222;border:1px solid #7952b3;color:#7952b3;">Bootstrap 5</span>
+        <span class="badge fs-6 px-4 py-2" style="background:#222;border:1px solid #ff6b6b;color:#ff6b6b;">Web Audio API</span>
+        <span class="badge fs-6 px-4 py-2" style="background:#222;border:1px solid #777bb3;color:#777bb3;">PHP + MySQL</span>
+    </div>
+
+    <!-- CRÉDITOS -->
+    <h2>👨‍💻 Créditos</h2>
+    <div class="card p-4 text-center">
+        <p style="font-size:1.1rem;font-weight:700;color:#ffd700;">Hashwar Technologies</p>
+        <p><strong>CEO:</strong> Joel Sandi</p>
+        <p><strong>Asistencia IA:</strong> ARIA &amp; NEBULA</p>
+        <p><strong>Música:</strong> JDR-IA Studios</p>
+        <p><strong>Desarrollo:</strong> 50 días — La Paz, Bolivia</p>
+        <p style="color:#666;font-size:0.8rem;">Versión 2.7 — "Revelión 2026" — MIT License</p>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>© Derechos Reservados — Hashwar Technologies / Joel Sandi</p>
+    <p style="font-size:0.65rem;">Versión 2.7 — Junio 2026</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
