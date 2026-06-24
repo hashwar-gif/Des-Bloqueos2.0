@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, orientation=landscape">
+    <title>DESBLOQUEOS — Bolivia 2026</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-wrapper">
+        <!-- CREDITS -->
+        <div id="credits-screen">
+            <div id="starfield"></div>
+            <div id="credits-content">
+                <p style="text-align:center;font-size:3rem;margin-bottom:50px;">DESBLOQUEOS</p>
+                <p style="text-align:center;color:#fff;">REVELIÓN 2026 — EPISODIO FINAL</p>
+                <p>Han pasado 50 días de resistencia. Este proyecto nació del caos de los bloqueos.</p>
+                <p>Agradecemos a Dios por darnos un día más para respirar y seguir vivos.</p>
+                <p>Gracias a la "inspiración" sarcástica de todo lo vivido; sin esa pausa forzada, este mundo no existiría.</p>
+                <p style="text-align:center;margin-top:50px;">--- INTEGRANTES ---<br>Joel Sandi (Líder)<br>ARIA & NEBULA (IA)<br>JDR-IA Studios (Música)</p>
+                <p style="text-align:center;margin-top:50px;">--- DATOS DE MISIÓN ---<br>Desarrollo: 50 Días<br>Origen: La Paz, Bolivia</p>
+            </div>
+        </div>
+
+        <div id="canvas-container">
+            <canvas id="gameCanvas"></canvas>
+            <audio id="bgm-player" loop></audio>
+
+            <!-- ===== HUD ===== -->
+            <div class="game-ui-overlay d-none w-100 px-2 py-1 d-flex justify-content-between align-items-start" id="main-hud">
+                <div class="d-flex flex-column" style="gap:1px;">
+                    <div class="hud-item">
+                        <span>❤️</span>
+                        <div class="health-bar"><div id="health-fill"></div></div>
+                        <span id="ui-hp-text" style="font-size:.6rem;">100</span>
+                        <span id="ui-lives" style="font-size:.7rem;color:#ff0040;margin-left:4px;">3 ❤️</span>
+                    </div>
+                    <div class="hud-item"><span>🔫</span> <span id="ui-balas">40</span></div>
+                    <div class="hud-item" style="color:var(--gold);border-color:rgba(255,215,0,0.15);"><span>💰</span> $<span id="ui-money">0</span></div>
+                    <div class="hud-item" id="ui-ability" style="color:var(--cyan);border-color:rgba(0,240,255,0.15);"><span>⚡</span> <span id="ui-abil-name">HAB</span> <span id="ui-abil-cd"></span></div>
+                </div>
+                <div id="player-title" class="rebelion-tag" style="position:absolute;left:50%;transform:translateX(-50%) skew(-15deg);display:none;padding:4px 14px;font-size:0.65rem;"></div>
+                <div class="d-flex flex-column align-items-end" style="gap:1px;">
+                    <div class="hud-item" style="color:var(--red);border-color:rgba(255,0,64,0.15);font-weight:700;"><span id="ui-city" style="font-size:0.6rem;color:#ff9800;margin-right:6px;"></span>⏱️ <span id="ui-timer">180</span></div>
+                    <div class="hud-item" style="color:#888;border-color:rgba(255,255,255,0.05);"><span style="font-size:.55rem;">VÍVERES:</span> <span id="ui-viveres">0</span></div>
+                    <div class="hud-item" style="color:#888;border-color:rgba(255,255,255,0.05);"><span style="font-size:.55rem;">GASOLINA:</span> <span id="ui-gasolina">0</span></div>
+                </div>
+            </div>
+            <div class="weather-hud" id="weather-toast" style="display:none;"><span id="ui-weather">DÍA ☀️</span></div>
+
+            <!-- ===== STORY SCREEN ===== -->
+            <div class="game-overlay d-none" id="story-screen" style="z-index:500;background:#000;">
+                <div style="width:100%;height:100%;display:flex;flex-direction:column;padding-bottom:24px;">
+                    <div style="flex:1;background:#000;border-bottom:2px solid rgba(0,240,255,0.25);">
+                        <canvas id="storyCanvas" width="800" height="300" style="width:100%;height:100%;object-fit:cover;"></canvas>
+                    </div>
+                    <div class="glass-card" style="padding:14px;text-align:left;position:relative;border-radius:0;border-top:3px solid rgba(0,240,255,0.3);">
+                        <div id="story-location" style="color:var(--cyan);font-weight:700;font-size:0.85rem;letter-spacing:2px;margin-bottom:4px;">📍 LOCALIZACIÓN</div>
+                        <hr style="border-color:rgba(0,240,255,0.15);margin:4px 0;">
+                        <div id="story-text" style="font-size:0.8rem;line-height:1.4;color:#bbb;"></div>
+                        <div style="position:absolute;bottom:10px;right:14px;">
+                            <button class="btn" onclick="skipStory()" style="background:var(--cyan);color:#000;font-weight:700;font-size:0.55rem;padding:4px 10px;border:none;border-radius:5px;box-shadow:0 2px 8px rgba(0,240,255,0.3);">
+                                CONTINUAR <kbd style="background:#000;color:var(--cyan);margin-left:6px;padding:2px 6px;border-radius:3px;font-size:0.55rem;">X</kbd>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div style="position:absolute;bottom:8px;left:0;width:100%;text-align:center;font-size:0.4rem;opacity:0.2;color:#fff;letter-spacing:1px;pointer-events:none;">© Derechos Reservados — HASHWAR TECHNOLOGIES / JOEL SANDI</div>
+            </div>
+
+            <!-- ===== START SCREEN ===== -->
+            <div class="game-overlay" id="start-screen">
+                <div class="mb-1" style="animation:fadeIn 0.6s ease;">
+                    <div class="title-line">
+                        <span class="title-des">DES</span><span style="color:#888;text-shadow:0 4px 15px rgba(0,0,0,0.8);">-</span><span class="title-bloqueos">BLOQUEOS</span>
+                    </div>
+                    <div class="title-sub">BOLIVIA</div>
+                </div>
+                <span class="rebelion-tag mb-2">50 DÍAS DE RESISTENCIA</span>
+                <p class="pulse-text" style="color:rgba(0,240,255,0.7);letter-spacing:5px;font-size:0.65rem;margin-bottom:1rem;">SOBREVIVE A LA RESISTENCIA</p>
+                <button class="btn btn-lg btn-glow" id="start-btn" style="background:linear-gradient(135deg,var(--red),#ff0066);color:#fff;font-weight:700;font-size:clamp(0.7rem,2.5vw,1rem);padding:10px 40px;border-radius:50px;border:none;letter-spacing:3px;box-shadow:0 4px 20px rgba(255,0,64,0.3);text-transform:uppercase;">
+                    ▶ EMPEZAR MISIÓN
+                </button>
+                <div class="d-flex gap-3 mt-3" style="font-size:0.45rem;">
+                    <span style="color:rgba(0,240,255,0.4);">12 PERSONAJES</span>
+                    <span style="color:#333;">|</span>
+                    <span style="color:rgba(0,240,255,0.4);">6 NIVELES</span>
+                    <span style="color:#333;">|</span>
+                    <span style="color:rgba(0,240,255,0.4);">8 CLIMAS</span>
+                </div>
+                <div style="position:absolute;bottom:8px;font-size:0.45rem;opacity:0.2;color:#fff;letter-spacing:1px;">© Derechos Reservados — HASHWAR TECHNOLOGIES / JOEL SANDI</div>
+            </div>
+
+            <!-- ===== CHARACTER SELECTION ===== -->
+            <div class="game-overlay d-none" id="char-selection-screen" style="background:rgba(0,0,0,0.9);">
+                <div class="mb-2"><h2 style="color:#fff;font-family:'Orbitron',sans-serif;font-size:clamp(0.6rem,2.5vw,0.9rem);letter-spacing:5px;font-weight:400;opacity:0.8;">SELECCIONA TU UNIDAD</h2></div>
+                <div class="char-grid container">
+                    <div class="char-card" onclick="openLevelSelection('pm')"><canvas id="preview-pm" width="100" height="150"></canvas><span class="badge bg-primary w-100 mt-1">P. Militar</span></div>
+                    <div class="char-card" onclick="openLevelSelection('policia_bol')"><canvas id="preview-policia_bol" width="100" height="150"></canvas><span class="badge bg-success w-100 mt-1">P. Boliviana</span></div>
+                    <div class="char-card" onclick="openLevelSelection('rebelde')"><canvas id="preview-rebelde" width="100" height="150"></canvas><span class="badge bg-danger w-100 mt-1">Rebelde</span></div>
+                    <div class="char-card" onclick="openLevelSelection('perro')"><canvas id="preview-perro" width="100" height="150"></canvas><span class="badge bg-danger w-100 mt-1" style="background:#8d6e63;">Perro Petardo</span></div>
+                    <div class="char-card" onclick="openLevelSelection('dea')"><canvas id="preview-dea" width="100" height="150"></canvas><span class="badge bg-dark w-100 mt-1 border border-warning" style="color:#ffd700;">DEA</span></div>
+                    <div class="char-card" onclick="openLevelSelection('jara')"><canvas id="preview-jara" width="100" height="150"></canvas><span class="badge bg-success w-100 mt-1" style="background:#2e7d32;">Cap. JARA</span></div>
+                    <div class="char-card" onclick="openLevelSelection('cholita')"><canvas id="preview-cholita" width="100" height="150"></canvas><span class="badge bg-info text-dark w-100 mt-1">Cholita</span></div>
+                    <div class="char-card" onclick="openLevelSelection('joe')"><canvas id="preview-joe" width="100" height="150"></canvas><span class="badge bg-primary w-100 mt-1" style="background:#6a1b9a;">Joe</span></div>
+                    <div class="char-card" onclick="openLevelSelection('poncho_j')"><canvas id="preview-poncho_j" width="100" height="150"></canvas><span class="badge bg-dark w-100 mt-1 border border-danger" style="color:#f44;">Poncho Rojo</span></div>
+                    <div class="char-card" onclick="openLevelSelection('cob_j')"><canvas id="preview-cob_j" width="100" height="150"></canvas><span class="badge bg-secondary w-100 mt-1">C.O.B.</span></div>
+                    <div class="char-card" onclick="openLevelSelection('evo_j')"><canvas id="preview-evo_j" width="100" height="150"></canvas><span class="badge bg-black w-100 mt-1 border border-light" style="color:#fff;">E. Gonzalez</span></div>
+                    <div class="char-card" onclick="openLevelSelection('rodrigo')"><canvas id="preview-rodrigo" width="100" height="150"></canvas><span class="badge bg-light text-dark w-100 mt-1">Presidente</span></div>
+                </div>
+                <div style="font-size:0.45rem;color:#555;margin-top:6px;letter-spacing:3px;font-weight:600;">X: DISPARAR · Z: HABILIDAD · ESPACIO: SALTAR · ← →: MOVER</div>
+            </div>
+
+            <!-- ===== LEVEL SELECTION ===== -->
+            <div class="game-overlay d-none" id="level-selection-screen" style="background:radial-gradient(ellipse at center,rgba(0,20,10,0.95) 0%,#000 100%);">
+                <div style="border-bottom:1px solid rgba(0,255,0,0.15);padding:6px 15px;margin-bottom:8px;width:100%;">
+                    <h2 style="color:#0f0;font-family:'Orbitron',sans-serif;font-size:clamp(0.5rem,2vw,0.8rem);letter-spacing:6px;font-weight:700;margin:0;">★ CENTRO DE MANDO ★</h2>
+                    <span style="color:#0f0;font-size:0.35rem;opacity:0.4;">BOLIVIA_OPERATIONS_V2.0</span>
+                </div>
+                <div class="row g-3 w-100 px-3 justify-content-center" style="max-width:800px;">
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-info btn-glow" onclick="finalizeSelection(null,1)" style="min-height:100px;background:rgba(0,240,255,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">🏔️</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">LA PAZ</span></button></div>
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-danger btn-glow" onclick="finalizeSelection(null,2)" style="min-height:100px;background:rgba(255,0,64,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">🏗️</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">EL ALTO</span></button></div>
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-light btn-glow" onclick="finalizeSelection(null,3)" style="min-height:100px;background:rgba(255,215,0,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">⛏️</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">ORURO</span></button></div>
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-success btn-glow" onclick="finalizeSelection(null,4)" style="min-height:100px;background:rgba(0,255,0,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">🌳</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">CBBA</span></button></div>
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-success btn-glow" onclick="finalizeSelection(null,5)" style="min-height:100px;background:rgba(0,100,0,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">🌿</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">CHAPARE</span></button></div>
+                    <div class="col-4 col-md-2"><button class="btn btn-dark w-100 p-3 border-2 border-warning btn-glow" onclick="finalizeSelection(null,6)" style="min-height:100px;background:rgba(255,215,0,0.08);border-radius:12px;"><span style="font-size:clamp(1.2rem,4vw,1.8rem);">🌴</span><br><span style="font-size:0.6rem;font-weight:700;letter-spacing:1px;">SCZ</span></button></div>
+                </div>
+                <button class="btn btn-outline-light btn-sm rounded-pill px-4 mt-2" onclick="document.getElementById('level-selection-screen').classList.add('d-none');document.getElementById('char-selection-screen').classList.remove('d-none');" style="font-size:0.45rem;opacity:0.5;">[ CANCELAR ]</button>
+            </div>
+
+            <!-- ===== SHOP ===== -->
+            <div class="game-overlay d-none" id="shop-screen" style="background:rgba(0,0,0,0.92);">
+                <div class="glass-card" style="padding:22px;max-width:480px;width:92%;">
+                    <h2 style="color:var(--gold);font-family:'Orbitron',sans-serif;font-size:clamp(0.7rem,3vw,1rem);letter-spacing:4px;font-weight:700;margin-bottom:10px;">🏪 ARMERÍA DE LA RESISTENCIA</h2>
+                    <div style="color:var(--gold);font-size:1.1rem;margin-bottom:14px;border:1px solid rgba(255,215,0,0.2);display:inline-block;padding:4px 18px;border-radius:15px;">💰 $<span id="shop-money">0</span></div>
+                    <div class="shop-grid">
+                        <div class="shop-item" onclick="buyItem('ammo')"><span style="font-size:1.2rem;">🔫</span><br>MUNICIÓN +20<br><span class="price">$50</span></div>
+                        <div class="shop-item" onclick="buyItem('health')"><span style="font-size:1.2rem;">💊</span><br>BOTIQUÍN +25 HP<br><span class="price">$30</span></div>
+                        <div class="shop-item" onclick="buyItem('armor')"><span style="font-size:1.2rem;">🛡️</span><br>CHALECO DEF+<br><span class="price">$100</span></div>
+                        <div class="shop-item" onclick="buyItem('damage')"><span style="font-size:1.2rem;">⚡</span><br>BALA DAÑO+<br><span class="price">$150</span></div>
+                    </div>
+                    <button class="btn mt-3 px-5 rounded-pill fw-bold btn-glow" onclick="closeShop()" style="background:rgba(0,240,255,0.12);border:1px solid var(--cyan);color:var(--cyan);font-size:0.7rem;padding:8px 30px;">CONTINUAR MISIÓN</button>
+                </div>
+            </div>
+
+            <!-- ===== DEATH SCREEN ===== -->
+            <div class="game-overlay d-none" id="death-screen" style="background:rgba(80,0,0,0.7);">
+                <div class="glass-card" style="padding:30px;max-width:380px;border-color:rgba(255,0,64,0.4);">
+                    <h2 style="color:var(--red);font-family:'Black Ops One',system-ui;font-size:clamp(1.3rem,5vw,2rem);letter-spacing:6px;margin:0;">✖ MISIÓN FALLIDA</h2>
+                    <p style="color:#777;font-size:0.55rem;margin:10px 0 18px;letter-spacing:2px;">LA RESISTENCIA HA CAÍDO</p>
+                    <button class="btn btn-glow rounded-pill px-5 fw-bold" onclick="location.reload()" style="background:var(--red);border:none;color:#fff;font-size:0.65rem;padding:8px 25px;box-shadow:0 4px 20px rgba(255,0,64,0.4);">⟳ REINTENTAR</button>
+                </div>
+            </div>
+
+            <!-- ===== WIN SCREEN ===== -->
+            <div class="game-overlay d-none" id="win-screen" style="background:rgba(0,0,0,0.92);z-index:1000;">
+                <div class="glass-card" style="padding:25px;max-width:480px;width:92%;border-color:rgba(0,255,0,0.25);">
+                    <h2 style="color:#0f0;font-family:'Black Ops One',system-ui;font-size:clamp(1.2rem,4.5vw,1.8rem);letter-spacing:5px;margin:0;">★ VICTORIA ★</h2>
+                    <p style="color:#777;font-size:0.55rem;margin:6px 0 14px;letter-spacing:2px;">TODOS LOS NIVELES SUPERADOS — REBELIÓN 2026</p>
+                    <div style="border:1px solid rgba(0,255,0,0.15);border-radius:10px;padding:12px;margin-bottom:14px;">
+                        <div class="stat-row" style="font-size:0.65rem;padding:4px 0;"><span class="stat-label">💰 DINERO</span><span class="stat-value" style="color:var(--gold);font-size:0.75rem;">$<span id="win-money">0</span></span></div>
+                        <div class="stat-row" style="font-size:0.65rem;padding:4px 0;"><span class="stat-label">🔫 MUNICIÓN</span><span class="stat-value" style="color:var(--cyan);font-size:0.75rem;"><span id="win-bullets">0</span></span></div>
+                        <div class="stat-row" style="font-size:0.65rem;padding:4px 0;"><span class="stat-label">⏱️ TIEMPO</span><span class="stat-value" style="color:var(--red);font-size:0.75rem;"><span id="win-time">0</span>s</span></div>
+                    </div>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <div class="d-flex gap-2">
+                            <input type="text" id="player-name-input" class="form-control bg-dark text-white border-success" placeholder="ALIAS" style="width:120px;font-size:0.6rem;padding:4px 8px;">
+                            <button class="btn btn-success fw-bold btn-glow" onclick="saveGameScore()" style="font-size:0.6rem;padding:4px 14px;background:#0a0;border:none;">💾 GUARDAR</button>
+                        </div>
+                        <button class="btn btn-outline-light px-3" onclick="location.reload()" style="font-size:0.6rem;padding:4px 14px;">⟳ REINTENTAR</button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- /canvas-container -->
+
+        <!-- ===== MOBILE CONTROLS ===== -->
+        <div class="mobile-controls" id="touch-controls">
+            <div class="ctrl-group">
+                <div class="d-flex gap-2">
+                    <div class="ctrl-btn" id="btn-left">◀</div>
+                    <div class="ctrl-btn" id="btn-right">▶</div>
+                </div>
+                <div class="d-flex gap-2">
+                    <div class="ctrl-btn fire" id="btn-shoot">🔥</div>
+                    <div class="ctrl-btn jump" id="btn-jump">⬆</div>
+                    <div class="ctrl-btn ability" id="btn-ability" style="font-size:0.5rem;">⚡<br>HAB</div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /game-wrapper -->
+
+    <script src="game.js"></script>
+    <script>
+        if ('ontouchstart' in window || navigator.maxTouchPoints > 0) document.getElementById('touch-controls').style.display = 'flex';
+        const touchEvents = { 'btn-left': 'ArrowLeft', 'btn-right': 'ArrowRight', 'btn-jump': 'Space', 'btn-shoot': 'KeyX', 'btn-ability': 'KeyZ' };
+        Object.entries(touchEvents).forEach(([id, code]) => {
+            const btn = document.getElementById(id);
+            if (btn) {
+                btn.addEventListener('touchstart', (e) => { e.preventDefault(); keys[code] = true; if (code === 'KeyX' || code === 'KeyZ') window.dispatchEvent(new KeyboardEvent('keydown', {code})); });
+                btn.addEventListener('touchend', (e) => { e.preventDefault(); keys[code] = false; });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+========================================
+ INFORME DE CAMBIOS - SESION 23/06/2026
+========================================
+
+PROYECTO: BLOQUEOS_BOLIVIA (Revelion 2026 v2.7/v3.0)
+CARPETA: BLOQUEOS_BOLIVIA(Revelion2026_V2.7 - copia
+
+========================================
+ LO QUE SE HIZO:
+========================================
+
+1. SE COPIARON ARCHIVOS DE V3.0 A V2.7:
+   - index.html  (de v3.0 -> v2.7 - copia)
+   - style.css   (de v3.0 -> v2.7 - copia)
+   - game.js     (de v3.0 -> v2.7 - copia, con fixes aplicados)
+   - QR.jpeg     (de v3.0 -> v2.7 - copia)
+
+2. SE APLICARON FIXES A GAME.JS (ambos, v2.7 y v3.0):
+
+   A) FIX MUSICA (playlist)
+      - Playlist truncada de 13 canciones a SOLO 2 existentes:
+        * "music/b)Hashwar❌ JDR-IA.wav"
+        * "music/a)$hash❌ JDR-IA.wav"
+      - playBGM('game') ahora alterna entre las 2 pistas
+        (cada vez que se llama, cambia a la siguiente)
+      - playBGM('menu') siempre empieza con Hashwar
+
+   B) FIX FRIENDLY FIRE (fuego amigo)
+      - Clase Fire: agregado parametro 'owner' en constructor
+        (por defecto 'player')
+      - Clase Molo: al explotar, crea Fire con owner 'enemy'
+      - Clase Dyna: al explotar, crea Fire con owner 'enemy'
+      - Bucle de daño de fuego: solo daña enemigos si
+        f.owner === 'player'
+      - Esto evita que molotovs/piedras/botellas enemigas
+        dañen a otros enemigos
+
+3. SE CREO PRESENTACION (presentacion.html)
+   - Pagina Bootstrap 5 con info del juego
+   - Se iteraron multiples versiones para ajustar titulo
+   - Version final usa mismo estilo que v2.2 (Black Ops One)
+
+4. SE CREARON ARCHIVOS DE DOCUMENTACION:
+   - DESCRIPCION_DEL_JUEGO.txt
+   - INSTRUCCIONES_ITCHIO.txt
+
+========================================
+ LO QUE SE CAMBIO:
+========================================
+
+ARCHIVO: game.js
+- Playlist: 13 -> 2 entradas
+- playBGM(): modo 'game' ahora alterna
+- class Fire: constructor(x) -> constructor(x, owner)
+- class Molo: fires.push(new Fire(...)) -> fires.push(new Fire(..., 'enemy'))
+- class Dyna: fires.push(new Fire(...)) -> fires.push(new Fire(..., 'enemy'))
+- Bucle fuego: se agrego check if (f.owner === 'player')
+
+ARCHIVO: presentacion.html
+- De Arial 36px a Black Ops One con clamp(2rem,12vw,4.5rem)
+- Se agrego Bootstrap 5 CDN
+- Se agrego Google Fonts (Black Ops One, Share Tech Mono)
+- Se agrego animacion glitch-color
+- Estructura responsiva con Bootstrap
+
+ARCHIVOS NUEVOS:
+- index.html (copiado de v3.0)
+- style.css (copiado de v3.0)
+- QR.jpeg (copiado de v3.0)
+
+========================================
+ LO QUE NO SE HIZO / PENDIENTE:
+========================================
+
+1. ARCHIVOS DE MUSICA FALTANTES:
+   - music/ solo tiene 2 .wav, pero la carpeta deberia tener 13
+   - Las 11 canciones faltantes:
+     * 2_Cryptorebels ❌ JDR-IA.wav
+     * 1_Hashlords ❌ JDR-IA.wav
+     * Fan n1 ❌ JDR-IA.wav
+     * Incoherencia ❌ JDR-IA.wav
+     * Isabella ❌ JDR-IA.wav
+     * Luna de miel ❌ JDR-IA.wav
+     * Mujer ❌ JDR-IA.wav
+     * Ojitos lindos ❌ JDR-IA.wav
+     * Staley ❌ JDR -IA.wav
+     * Suenos ❌ JDR-IA.wav
+     * Verde adiccion ❌ JDR-IA.wav
+
+2. api_leaderboard.php:
+   - Depende de Hashwar11.2/src/Database.php
+   - No se toco
+
+3. TITULO "DESBLOQUEOS" EN PRESENTACION:
+   - Persiste problema de renderizado en dispositivo del usuario
+   - Se muestra "S-BLOQUE" en lugar de "DESBLOQUEOS"
+   - Se intentaron multiples enfoques (Arial, Black Ops One, clamp, px fijo)
+   - Causa exacta aun no identificada
+
+4. NOMBRE DE CARPETA:
+   - "BLOQUEOS_BOLIVIA(Revelion2026_V2.7 - copia" tiene parentesis
+   - Sugerencia: renombrar a algo limpio para itch.io
+
+========================================
+ ARCHIVOS EN LA CARPETA (FINAL):
+========================================
+
+- index.html           (NUEVO - de v3.0)
+- game.js              (ACTUALIZADO - v3.0 con fixes)
+- style.css            (NUEVO - de v3.0)
+- presentacion.html    (MODIFICADO)
+- api_leaderboard.php  (SIN CAMBIOS)
+- QR.jpeg              (NUEVO - de v3.0)
+- music/               (2 archivos)
+  - b)Hashwar❌ JDR-IA.wav
+  - a)$hash❌ JDR-IA.wav
+- DESCRIPCION_DEL_JUEGO.txt
+- INSTRUCCIONES_ITCHIO.txt
+- DIAGNOSTICO.txt
+- DIAGNOSTICO_COMPLETO.txt
+- REPORTE_SESION_REBELION_2026.txt
+- README.md
+- README.txt
+- INFORME_CAMBIOS.txt   (NUEVO - este archivo)
+
+========================================
+ NOTAS TECNICAS:
+========================================
+
+- game.js v3.0 tiene ~2,868 lineas (vs v2.7 ~3,549)
+- v3.0 incluye: sistema de clima, creditos, nuevas
+  animaciones de story scenes, personajes adicionales
+  (Perro Petardo, DEA, Cap. JARA, Joe)
+- Las escenas de historia tienen animaciones mas detalladas
+  (edificios, humo, gente, autos, helicopteros)
+- Se agrego boton de habilidad (Z) en controles moviles
+
+========================================
+ FIN DEL INFORME
+========================================

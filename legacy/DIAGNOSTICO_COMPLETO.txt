@@ -1,0 +1,217 @@
+======================================================================
+  DIAGNÓSTICO COMPLETO — DESBLOQUEOS BOLIVIA (Revelion2026_V2.7)
+======================================================================
+
+1. ESTRUCTURA DEL PROYECTO
+──────────────────────────────────────────────────────────────────────
+  game.js             ->  2,868 líneas  - Motor completo del juego
+  index.html          ->  209 líneas    - Página principal + 12 canvases
+  style.css           ->  244 líneas    - Estilos visuales responsive
+  api_leaderboard.php ->  54 líneas     - API PHP para ranking MySQL
+  README.md           ->  130 líneas    - Documentación actualizada v2.7
+  README.txt          ->  67 líneas     - Documentación antigua v0.5 (OBSOLETA)
+  DIAGNOSTICO.txt     ->  104 líneas    - Diagnóstico de sesión anterior
+  REPORTE_SESION_REBELION_2026.txt -> 38 - Reporte de v0.5
+  QR.jpeg             - Código QR (sin uso en el juego)
+  music/
+  ├── a)$hash❌ JDR-IA.wav
+  └── b)Hashwar❌ JDR-IA.wav
+
+
+2. QUÉ ES ESTE PROYECTO
+──────────────────────────────────────────────────────────────────────
+  Desbloqueos Bolivia es un juego tipo "Run & Gun" 2D de desplazamiento
+  lateral, desarrollado en HTML5 Canvas + JavaScript Vanilla + Bootstrap 5.
+  Ambientado en el conflicto social boliviano de 2026, avanzas por 6
+  ciudades de Bolivia derrotando enemigos, recolectando recursos, usando
+  habilidades únicas y descubriendo tu destino según el personaje elegido.
+
+
+3. PERSONAJES (12)
+──────────────────────────────────────────────────────────────────────
+  Clave            Nombre              Tipo    Habilidad               Final
+  ─────            ─────               ────    ──────────              ─────
+   pm               P. Militar          Héroe   VISOR TÁCTICO           Chapare
+   policia_bol      P. Boliviana        Héroe   MACANAZO POLICIAL       Chapare
+   rebelde          Rebelde             Héroe   INCENDIO PROVOCADO      Chapare
+   dea              DEA                 Héroe   DRON REAPER             Chapare
+   jara             Cap. LARI           Héroe   GRITO DE EUFORIA        Chapare
+   joe              Joe (Hacker)        Héroe   CÓDIGO FUENTE           Chapare
+   rodrigo          Presidente          Héroe   DECRETO SUPREMO         Chapare
+   cholita          Cholita             Villana FOGATA DE LA ABUELA    Malo
+   poncho_j         Poncho Rojo         Villano TEJIDO SAGRADO         Malo
+   cob_j            COB (Minero)        Villano DINAMITA DE SOCAVÓN    Malo
+   evo_j            Evo González        Villano VOZ DEL PUEBLO         Malo
+   perro            Perro Petardo       Villano CADENA MORTAL          Malo
+
+
+4. NIVELES (6)
+──────────────────────────────────────────────────────────────────────
+  #  Ciudad            Geografía/Fondo                     Enemigos
+  ─  ─────             ───────────────                     ────────
+  1  La Paz            Cerros, Illimani, árboles           Poncho, COB
+  2  El Alto           Altiplano, cactos, piedras          Poncho, COB
+  3  Oruro             Cerros mineros, socavón, Diablada   Poncho, COB
+  4  Cochabamba        Valle, Tunari, frutales             Poncho, COB
+  5  Chapare           Selva, coca, palmeras, río, heli    Evo, Rodrigo_e
+  6  Santa Cruz        Colinas tropicales, edificios,      Evo, Rodrigo_e
+                      palmeras, jaguares
+
+
+5. SISTEMA DE CLIMA (8)
+──────────────────────────────────────────────────────────────────────
+  Día ☀️, Noche 🌙, Atardecer 🌅, Amanecer 🌄,
+  Nieve ❄️, Lluvia 🌧️, Tormenta ⛈️, Niebla 🌫️
+  Cambia cada 45 segundos automáticamente.
+
+
+6. HABILIDADES (12) — VERSIÓN REDISEÑADA v2.7+
+──────────────────────────────────────────────────────────────────────
+   pm        -> VISOR TÁCTICO: dron + marca enemigos, +1 daño       (cd: 720, dur: 180)
+   policia   -> MACANAZO POLICIAL: macanazo + gas lacrimógeno +20   (cd: 900, dur: 300)
+   rebelde   -> INCENDIO PROVOCADO: 5 molotovs = muro de fuego      (cd: 540)
+   dea       -> DRON REAPER: dron bombardea enemigos con misiles    (cd: 420, dur: 180)
+   jara      -> GRITO DE EUFORIA: ondas de choque dañan y empujan    (cd: 900, dur: 300)
+   cholita   -> FOGATA DE LA ABUELA: fogata + espíritus fuego       (cd: 780, dur: 360)
+   poncho_j  -> TEJIDO SAGRADO: INVULNERABLE 4s + refleja daño     (cd: 1200, dur: 240)
+   cob_j     -> DINAMITA DE SOCAVÓN: 3 dinamitas en cadena          (cd: 600)
+   evo_j     -> LLUVIA DE HOJAS DE COCA: hojas de coca caen, enemigos se drogan y reciben daño  (cd: 720, dur: 360)
+   rodrigo   -> DECRETO SUPREMO: 8 bombas guiadas + botín           (cd: 1500)
+   perro     -> CADENA MORTAL: carga + explosiones + fuego           (cd: 600, dur: 180)
+   joe       -> CÓDIGO FUENTE: hackea enemigos se atacan entre sí   (cd: 600, dur: 180)
+
+
+7. SISTEMA DE ECONOMÍA
+──────────────────────────────────────────────────────────────────────
+  - Ponchos Rojos: $5 por eliminar
+  - COB (Miembros): $10 por eliminar
+  - Evo / Rodrigo_e: $30 por eliminar
+
+  TIENDA (entre niveles):
+  - Munición +20: $50
+  - Botiquín +25 HP: $30
+  - Chaleco DEF+5: $100
+  - Bala DAÑO+1: $150
+
+
+8. CONTROLES
+──────────────────────────────────────────────────────────────────────
+  Acción       | Tecla    | Móvil
+  Moverse      | ← →      | Botones ◀ ▶
+  Saltar       | Espacio  | Botón ⬆
+  Disparar     | X        | Botón 🔥
+  Habilidad    | Z        | Botón ⚡ HAB
+  Saltar hist. | X / Z    | Botón CONTINUAR
+
+
+9. PROBLEMAS CRÍTICOS
+──────────────────────────────────────────────────────────────────────
+  🔴 FALTAN 11/13 CANCIONES:
+     La playlist en game.js referencia 13 archivos .wav pero en music/
+     solo existen 2. Faltan:
+     - music/2_Cryptorebels ❌ JDR-IA.wav
+     - music/1_Hashlords ❌ JDR-IA.wav
+     - music/Fan n1 ❌ JDR-IA.wav
+     - music/Incoherencia ❌ JDR-IA.wav
+     - music/Isabella ❌ JDR-IA.wav
+     - music/Luna de miel ❌ JDR-IA.wav
+     - music/Mujer ❌ JDR-IA.wav
+     - music/Ojitos lindos ❌ JDR-IA.wav
+     - music/Staley ❌ JDR -IA.wav
+     - music/Sueños ❌ JDR-IA.wav
+     - music/Verde adicción ❌ JDR-IA.wav
+
+  🔴 DEPENDENCIA DE CDN (requiere internet):
+     - Bootstrap 5: https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/...
+     - Google Fonts: https://fonts.googleapis.com/...
+     Sin conexión, la UI no carga correctamente.
+
+  🔴 api_leaderboard.php requiere archivo externo:
+     - require_once '../Hashwar11.2/src/Database.php'
+     Depende de la carpeta \Hashwar11.2\ fuera de este proyecto.
+
+
+10. PROBLEMAS MODERADOS
+──────────────────────────────────────────────────────────────────────
+   🟡 CÓDIGO MUERTO:
+      - end_good ("Desbloqueaste el país") ahora está combinado en
+        end_good_chapare para personajes héroes (pm, policia_bol,
+        rodrigo, rebelde, joe). end_good puro sigue inalcanzable.
+
+  🟡 RENDERIZADO MANUAL:
+     - ~2,000 líneas de código en renderChar() dibujan cada personaje
+       píxel por píxel usando Canvas API. Difícil de mantener/editar.
+
+  🟡 NOMBRES DE ARCHIVO PROBLEMÁTICOS:
+     - Las canciones usan "❌" y espacios en los nombres.
+     - El archivo "Staley ❌ JDR -IA.wav" tiene espacio antes del guion.
+     - "Sueños" y "Verde adicción" usan caracteres Unicode (ñ, ó).
+     Potenciales problemas en sistemas Windows/Linux.
+
+
+11. PROBLEMAS MENORES
+──────────────────────────────────────────────────────────────────────
+  🔵 README DUPLICADO:
+     - README.txt (v0.5 desactualizado) y README.md (v2.7 actualizado).
+     README.txt debería eliminarse.
+
+  🔵 QR.jpeg:
+     - Existe en la raíz pero no se utiliza en el juego.
+
+  🔵 console.log en línea 91:
+     - Muestra "Audio play blocked" cuando el navegador bloquea autoplay.
+     Benigno pero evitable.
+
+  🔵 Sin pantalla de carga:
+     - El juego empieza inmediatamente sin indicador de progreso.
+
+
+12. FORTALEZAS
+──────────────────────────────────────────────────────────────────────
+  ✅ Motor de juego completo y funcional (2868 líneas)
+  ✅ 6 niveles con geografía, vegetación y decoraciones únicas
+  ✅ 12 personajes con renders detallados y habilidades únicas
+  ✅ Clima dinámico con 8 condiciones climáticas y partículas
+  ✅ IA enemiga con 4 tipos de proyectiles y jefe final
+  ✅ Ondas de refuerzos invocadas por el jefe
+  ✅ HUD completo: HP, balas, dinero, tiempo, ciudad, clima
+  ✅ Tienda entre niveles con 4 ítems
+  ✅ Pantalla de créditos estilo Star Wars
+  ✅ Responsive con controles táctiles para móvil
+  ✅ 3 finales diferentes según personaje y bando
+  ✅ API de leaderboard con MySQL (PHP)
+  ✅ Efectos de sonido sintetizados (Web Audio API)
+  ✅ Sistema de paralaje con 6 capas de fondo
+  ✅ Efectos climáticos: nieve, lluvia, relámpagos, niebla
+  ✅ Partículas para explosiones, daño, clima
+
+
+13. TECNOLOGÍAS USADAS
+──────────────────────────────────────────────────────────────────────
+  - HTML5 Canvas (renderizado 2D)
+  - JavaScript Vanilla (~2,868 líneas)
+  - Bootstrap 5 (UI responsiva vía CDN)
+  - Web Audio API (efectos de sonido)
+  - PHP + MySQL (leaderboard)
+
+
+14. SUGERENCIAS DE MEJORA
+──────────────────────────────────────────────────────────────────────
+  1. Agregar los 11 archivos de música faltantes
+  2. Embeber Bootstrap y Google Fonts localmente para uso offline
+  3. Implementar Service Worker para funcionamiento offline
+  4. Crear spritesheets/tilesets para facilitar el arte
+  5. Agregar pantalla de carga con barra de progreso
+  6. Eliminar README.txt (obsoleto) y QR.jpeg si no se usa
+   7. Eliminar o refactorizar end_good puro (parcialmente refactorizado ya)
+  8. Agregar más variedad de enemigos por nivel
+  9. Considerar migrar a Phaser u otro framework si se escala
+  10. Agregar efectos de sonido más variados
+  11. Internacionalización (i18n) para otros idiomas
+  12. Sistema de logros / achievements
+
+
+======================================================================
+  Fin del diagnóstico — 20 de junio de 2026
+  Generado por OpenCode
+======================================================================
