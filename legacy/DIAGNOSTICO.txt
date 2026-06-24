@@ -1,0 +1,107 @@
+======================================================================
+  DIAGNÓSTICO COMPLETO — DESBLOQUEOS BOLIVIA (Revelion2026_V2.7)
+======================================================================
+
+1. ARCHIVOS
+──────────────────────────────────────────────────────────────────────
+  game.js       ->  2,580 líneas  ✅  Sin errores de sintaxis
+  index.html    ->  209 líneas    ✅  12 canvases de personajes
+  style.css     ->  244 líneas    ✅
+  README.md     ->  NUEVO         ✅  (antes README.txt desactualizado)
+  DIAGNOSTICO.txt -> este archivo
+
+
+2. PERSONAJES (12)
+──────────────────────────────────────────────────────────────────────
+   Clave            Nombre              Tipo    Habilidad               Final
+   ─────            ─────               ────    ──────────              ─────
+   pm               P. Militar          Héroe   VISOR TÁCTICO           Chapare
+   policia_bol      P. Boliviana        Héroe   MACANAZO POLICIAL       Chapare
+   rebelde          Rebelde             Héroe   INCENDIO PROVOCADO      Chapare
+   dea              DEA                 Héroe   DRON REAPER             Chapare
+   jara             Cap. LARI           Héroe   GRITO DE EUFORIA        Chapare
+   joe              Joe (Hacker)        Héroe   CÓDIGO FUENTE           Chapare
+   rodrigo          Presidente          Héroe   DECRETO SUPREMO         Chapare
+   cholita          Cholita             Villana FOGATA DE LA ABUELA    Malo
+   poncho_j         Poncho Rojo         Villano TEJIDO SAGRADO         Malo
+   cob_j            COB (Minero)        Villano DINAMITA DE SOCAVÓN    Malo
+   evo_j            Evo González        Villano VOZ DEL PUEBLO         Malo
+   perro            Perro Petardo       Villano CADENA MORTAL          Malo
+
+  ✅ Todos tienen renderChar(), useAbility(), drawPreview() y ending.
+
+
+3. NIVELES (6)
+──────────────────────────────────────────────────────────────────────
+  #  Ciudad            Geografía/Fondo
+  ─  ─────             ───────────────
+  1  La Paz            Cerros, Illimani, árboles
+  2  El Alto           Altiplano, cactos, piedras
+  3  Oruro             Cerros mineros, socavón, Virgen, diablada
+  4  Cochabamba        Valle, Tunari, frutales
+  5  Chapare           Selva, coca, palmeras, río, heli DEA
+  6  Santa Cruz        Colinas tropicales, edificios, palmeras, jaguares
+
+
+4. HABILIDADES (12) — VERSIÓN REDISEÑADA v2.7+
+──────────────────────────────────────────────────────────────────────
+   pm        -> VISOR TÁCTICO: dron + marca enemigos, +1 daño       (cd: 720, dur: 180)
+   policia   -> MACANAZO POLICIAL: macanazo + gas lacrimógeno +20   (cd: 900, dur: 300)
+   rebelde   -> INCENDIO PROVOCADO: 5 molotovs = muro de fuego      (cd: 540)
+   dea       -> DRON REAPER: dron bombardea enemigos con misiles    (cd: 420, dur: 180)
+   jara      -> GRITO DE EUFORIA: ondas de choque dañan y empujan    (cd: 900, dur: 300)
+   cholita   -> FOGATA DE LA ABUELA: fogata + espíritus fuego       (cd: 780, dur: 360)
+   poncho_j  -> TEJIDO SAGRADO: INVULNERABLE 4s + refleja daño     (cd: 1200, dur: 240)
+   cob_j     -> DINAMITA DE SOCAVÓN: 3 dinamitas en cadena          (cd: 600)
+    evo_j     -> LLUVIA DE HOJAS DE COCA: hojas de coca caen, enemigos se drogan y reciben daño  (cd: 720, dur: 360)
+   rodrigo   -> DECRETO SUPREMO: 8 bombas guiadas + botín           (cd: 1500)
+   perro     -> CADENA MORTAL: carga + explosiones + fuego           (cd: 600, dur: 180)
+   joe       -> CÓDIGO FUENTE: hackea enemigos se atacan entre sí   (cd: 600, dur: 180)
+
+
+5. FINALES
+──────────────────────────────────────────────────────────────────────
+   end_chapare     -> "EVO HA CAÍDO"        -> dea, jara
+   end_good_chapare -> "EVO CAÍDO, BOLIVIA LIBRE" -> pm, policia_bol,
+                                                     rodrigo, rebelde, joe
+   end_bad         -> "BLOQUEASTE EL PAÍS"  -> cholita, poncho_j, cob_j,
+                                               evo_j, perro
+   end_good        -> "DESBLOQUEASTE EL PAÍS" -> 🚫 INALCANZABLE (personajes
+                                                héroes van a Chapare combinado)
+
+
+6. DEBUG / CÓDIGO MUERTO
+──────────────────────────────────────────────────────────────────────
+   - 1 console.log en línea 91 (audio autoplay bloqueado) -> benigno
+   - end_good aislado: héroes buenos ahora ven end_good_chapare (combinado)
+   - No hay debugger, ni console.warn/error
+
+
+7. COSAS CORREGIDAS EN ESTA SESIÓN
+──────────────────────────────────────────────────────────────────────
+   ✅ Cholita mejorada (pollera, aguayo, bombín, trenzas)
+   ✅ PM mejorado (camuflaje plomo, chaleco, placa PM)
+   ✅ Policía Boliviana mejorada (verde pacay, gorra, placa)
+   ✅ Rebelde rediseñado (estilo rapero urbano)
+   ✅ Perro Petardo mejorado (chaleco explosivo, colmillos, mecha)
+   ✅ DEA mejorado (casco táctico, visera, chaleco)
+   ✅ Cap. LARI rediseñado + renombrado a JARA y vuelto a LARI
+   ✅ Joe rediseñado (chamarra negra, tenis lilas, estilo Anonymous)
+   ✅ Poncho Rojo mejorado (poncho rayas, hoz y martillo)
+   ✅ COB mejorado (overol, casco con lámpara al frente, martillo)
+   ✅ Evo mejorado (traje, banda, wiphala, bastón)
+   ✅ Minero: lámpara movida al frente del casco
+   ✅ Texto inicio corregido (8→12 personajes, 4→6 niveles)
+   ✅ README.md creado con información precisa
+   ✅ Nombre de ciudad visible en el HUD junto al cronómetro
+   ✅ Policía Boliviana: MURO DE CONTENCIÓN → MACANAZO POLICIAL
+   ✅ Final combinado: end_good_chapare (EVO CAÍDO + DESBLOQUEASTE EL PAÍS)
+   ✅ DEA: ALLANAMIENTO FEDERAL → DRON REAPER (drone bombardea con misiles)
+   ✅ Cap. LARI: ESTRATEGIA MILITAR → GRITO DE EUFORIA (ondas de choque dañan enemigos)
+
+
+8. PENDIENTE / SUGERENCIAS
+──────────────────────────────────────────────────────────────────────
+   - Probar todos los personajes en juego para verificar renders
+   - Probar transiciones nivel→tienda→historia→siguiente nivel
+   - La música 2_Cryptorebels.mp3 no existe en music/

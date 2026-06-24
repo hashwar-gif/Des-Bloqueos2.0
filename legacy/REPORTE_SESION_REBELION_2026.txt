@@ -1,0 +1,38 @@
+# REPORTE DE OPERACIONES - DESBLOQUEOS BOLIVIA (v0.5)
+Fecha: 9 de junio de 2026
+Estado: MISIÓN CUMPLIDA (Consolidación Final)
+
+## 🏁 HITOS LOGRADOS HOY:
+
+1. EVOLUCIÓN JARVIS v11.1:
+   - Integración de JARVIS con capacidad de leer 246 nodos de Obsidian.
+   - Implementación del "Puente Gemini" (Inteligencia de respaldo).
+   - HUD optimizado bajo el panel N.O.A.
+
+2. PROYECTO DESBLOQUEOS BOLIVIA v0.5:
+   - Motor Responsivo: Jugable en móviles (Horizontal) y PC (Bootstrap 5).
+   - Sistema de Selección de Bando: Pantalla intermedia con personajes animados de cuerpo completo.
+   - Escenario Maestro: Restauración de montañas, ciudad nocturna con ventanas iluminadas, árboles y postes.
+   - Inteligencia de Villanos:
+     * Ponchos Rojos ($5): 1 disparo. Atacan con fusil y Molotov.
+     * Miembros COB ($10): 3 disparos. Atacan con Dinamita (BOOM) y Molotov.
+     * Evo Morales ($30): Jefe Final (Traje Negro), 18 disparos. Invoca oleadas de refuerzos.
+   - Economía de Guerra: Registro de ganancias en tiempo real y Score final en pantallas de resultados.
+
+## 🚀 PLAN DE MEJORAS ESTRATÉGICAS (FASE 2):
+
+1. SISTEMA DE RANKING LÍDER (Leaderboard):
+   - Vincular el Score final ($) a una base de datos MySQL para mostrar quién lidera la resistencia a nivel nacional.
+2. TIENDA DE SUMINISTROS (Armería):
+   - Implementar un menú donde se pueda gastar el dinero acumulado en:
+     * Munición perforante (daña más a Evo).
+     * Chaleco táctico (más resistencia para el PM).
+     * Molotovs mejoradas (para el Rebelde).
+3. NUEVOS TEATROS DE OPERACIONES:
+   - Nivel El Alto (Nieve y bloqueos de tierra).
+   - Nivel Santa Cruz (Calor y barricadas de troncos).
+4. INTELIGENCIA ARTIFICIAL JARVIS 2.0:
+   - Permitir que JARVIS analice tu desempeño en el juego y te dé consejos tácticos basados en Obsidian.
+
+---
+Generado por JARVIS NEURAL CORE - Ecosistema Hashwar
